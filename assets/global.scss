@@ -1,0 +1,143 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+}
+
+:root {
+  font-family: 'Inter', sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+input[type="text"] {
+  width: auto;
+  height: 3rem;
+  padding: 1rem;
+  border: none;
+  border-radius: .5rem;
+  outline: none;
+  font-size: 1.25rem;
+  transition: all .15s;
+
+  &:hover {
+    box-shadow: 0 5px 5px rgba(0, 0, 0, .0625);
+  }
+
+  &:focus {
+    box-shadow: 0 5px 5px rgba(0, 0, 0, .125);
+  }
+}
+
+input[type="button"].btn,
+input[type="submit"].btn,
+a.btn {
+  width: auto;
+  height: 3rem;
+  min-height: 3rem;
+  display: block;
+  padding: 1rem 1.5rem 1rem 1.5rem;
+  text-align: center;
+  text-decoration: none;
+  border: none;
+  border-radius: .5rem;
+  transition: all .15s; 
+
+  &:hover {
+    box-shadow: 0 5px 5px rgba(0, 0, 0, .0625);
+  }
+
+  &:focus {
+    box-shadow: 0 5px 5px rgba(0, 0, 0, .125);
+  }
+}
+
+a.btn {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+
+  i {
+    font-size: 1.375rem;
+    margin-right: .75rem;
+  }
+}
+
+.btn {
+  &.btn-normal {
+    background-color: #FFF;
+    color: #02030F;
+  }
+
+  &.btn-primary {
+    background-color: #204ECF;
+    color: #FFF;
+  }
+
+  &.btn-success {
+    background-color: #1DB954;
+    color: #FFF;
+  }
+}
+
+i.fas, i.fa, i.far{font-family:'Font Awesome\ 5 Free' !important}
+
+.f-container {
+  display: flex;
+  width: 100vw;
+  background-color: aqua;
+  border-bottom: 1px solid #D0D0D0;
+}
+
+.x-container {
+  margin: 0 auto;
+  display: flex;
+}
+
+@media only screen and (max-width: 600px) {
+  .x-container {
+    width: 540px;
+  }
+  .f-container { height: 24rem; }
+}
+
+@media only screen and (min-width: 600px) {
+  .x-container {
+    width: 540px;
+  }
+
+  .f-container { height: 24rem; }
+}
+
+@media only screen and (min-width: 768px) {
+  .x-container {
+    width: 720px;
+  }
+
+  .f-container { height: 24rem; }
+}
+
+@media only screen and (min-width: 992px) {
+  .x-container {
+    width: 900px;
+  }
+
+  .f-container { height: 24rem; }
+}
+
+@media only screen and (min-width: 1200px) {
+  .x-container {
+    width: 1024px;
+  }
+
+  .f-container { height: 24rem; }
+}
