@@ -44,7 +44,7 @@ export default {
   }
 
   input[type="text"], .buttons {
-    width: 64%;
+    width: 100%;
     margin-bottom: 1rem;
   }
 
@@ -60,6 +60,23 @@ export default {
       font-weight: 400;
       text-align: center;
       &:first-child { margin-right: 1rem; }
+    }
+  }
+
+  @media only screen and (max-width: 991px) {
+    .buttons {
+      flex-direction: column;
+      align-content: flex-start;
+      align-items: center;
+      justify-content: center;
+
+      a {
+        width: 100%;
+        margin-right: 0;
+        margin-bottom: .5rem;
+
+        &:first-child { margin-right: 0;}
+      }
     }
   }
 
