@@ -17,7 +17,9 @@ export default {
         integrity: "sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr",
         crossorigin: "anonymous"
       },
-      { rel: 'stylesheet', href: 'https://cdn.jsdelivr.net/gh/devicons/devicon@master/devicon.min.css'}
+      { rel: 'preconnect', href: 'https://fonts.gstatic.com'},
+      { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap'},
+      { rel: 'stylesheet', href: 'https://cdn.jsdelivr.net/gh/devicons/devicon@master/devicon.min.css'},
     ]
   },
 
