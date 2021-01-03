@@ -42,12 +42,12 @@ export default {
         flex-direction: row;
         justify-content: space-between;
 
-        input[type="text"] {
+        input.input-text {
           flex: 1;
           margin-right: 1rem;
         }
 
-        input[type="text"], .buttons {
+        input.input-text, .buttons {
           margin-bottom: 0;
         }
 
@@ -93,7 +93,7 @@ export default {
     flex-direction: column;
   }
 
-  input[type="text"], .buttons {
+  input.input-text, .buttons {
     width: 100%;
     margin-bottom: 1rem;
   }
@@ -116,7 +116,7 @@ export default {
   @media only screen and (max-width: 991px) {
 
     .f-container {
-      input[type="text"] {
+      input.input-text {
         width: 100%;
       }
 
@@ -135,7 +135,7 @@ export default {
       }
 
       &.scrolled {
-        input[type="text"] {
+        input.input-text {
           flex: 1;
         }
 
