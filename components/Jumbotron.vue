@@ -1,13 +1,15 @@
 <template>
-  <div class="f-container">
+  <div class="f-container" :class="{'scrolled' : mode}" id="jumbotron">
     <div class="x-container jumbotron">
-      <img class="logo" src="~/static/logo.png" alt="turkcekaynaklar.com">
+      <router-link to="/" class="logo-link">
+        <img class="logo" src="~/static/logo.png" alt="turkcekaynaklar.com">
+      </router-link>
       <input type="text" placeholder="Türkçe kaynak arayın..." autocomplete="none" />
       <div class="buttons">
-        <a href="#" class="btn btn-primary">
-          <i class="fas fa-pen"></i>Sen de katkıda bulun</a>
-        <a href="#" class="btn btn-normal">
-          <i class="fab fa-github"></i>Github'da Görüntüle</a>
+        <a target="_blank " href="https://github.com/fatihacet/turkcekaynaklar-com/blob/master/Katki-Cagrisi.md" class="btn btn-primary" alt="Sen de katkıda bulun!">
+          <i class="fas fa-pen"></i><span>Sen de katkıda bulun</span></a>
+        <a target="_blank" href="https://github.com/fatihacet/turkcekaynaklar-com" class="btn btn-normal" alt="Github'da Görüntüle">
+          <i class="fab fa-github"></i><span>Github'da Görüntüle</span></a>
       </div>
     </div>
   </div>
@@ -18,14 +20,62 @@ export default {
   name: 'Jumbotron',
   props: {
     msg: String,
-  },
+    mode: Boolean
+  }
 };
 </script>
 
 <style scoped lang="scss">
 
   .f-container {
-    background: url('../static/f-container-bg.png'), linear-gradient(to left bottom, rgb(179, 213, 255) 0%, rgb(231, 255, 179) 100%)
+    position: fixed;
+    top: 0;
+    border-bottom: 1px solid var(--c-border-dark);
+    background: url('../static/f-container-bg.png'), linear-gradient(to left bottom, var(--c-jumbg-start) 0%, var(--c-jumbg-end) 100%);
+    transition: all .15s;
+
+    &.scrolled {
+      height: 6rem;
+      padding: 1rem 0;
+
+      .jumbotron {
+        flex-direction: row;
+        justify-content: space-between;
+
+        input[type="text"] {
+          flex: 1;
+          margin-right: 1rem;
+        }
+
+        input[type="text"], .buttons {
+          margin-bottom: 0;
+        }
+
+        a.logo-link {
+          display: block;
+          width: 4.75rem;
+          height: 3rem;
+          margin-bottom: 0;
+          margin-right: 1rem;
+
+          img.logo {
+            width: 4.75rem;
+            height: 3rem;
+          }
+        }
+
+        .buttons {
+          width: auto;
+
+          a.btn { 
+            i { margin-right: 0; }
+            &:first-child { margin-right: 1rem; }
+
+          }
+          span { display: none; }
+        }
+      }
+    }
   }
 
   img.logo {
@@ -55,7 +105,7 @@ export default {
     align-items: center;
     justify-content: center;
     
-    a {
+    a.btn {
       width: 50%;
       font-weight: 400;
       text-align: center;
@@ -64,18 +114,40 @@ export default {
   }
 
   @media only screen and (max-width: 991px) {
-    .buttons {
-      flex-direction: column;
-      align-content: flex-start;
-      align-items: center;
-      justify-content: center;
 
-      a {
+    .f-container {
+      input[type="text"] {
         width: 100%;
-        margin-right: 0;
-        margin-bottom: .5rem;
+      }
 
-        &:first-child { margin-right: 0;}
+      .buttons {
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+
+        a.btn {
+          width: 100%;
+          margin-right: 0;
+          margin-bottom: .5rem;
+
+          &:first-child { margin-right: 0;}
+        }
+      }
+
+      &.scrolled {
+        input[type="text"] {
+          flex: 1;
+        }
+
+        .buttons {
+          flex-direction: row;
+          justify-items: center;
+          align-content: space-between;
+
+          a.btn {
+            margin-bottom: 0;
+          }
+        }
       }
     }
   }

@@ -19,7 +19,11 @@
         <i :class="getContentClass(content.type)"></i>
         <div class="content-info">
           <h3><a target="_blank" :href="content.link">{{content.title}}</a></h3>
-          <span class="author"><a href="#">{{content.author}}</a></span>
+          <div class="sub-links">
+            <span class="author"><a :href="'/yazar/' + content.author">{{content.author}}</a></span>
+            <!--<span class="author">&bull;</span>
+            <span class="author"><a :href="content.link" target="_blank">{{content.link}}</a></span>-->
+          </div>
         </div>
       </div>
     </div>
@@ -30,6 +34,7 @@
 export default {
   name: 'Konu',
   components: { },
+  layout: 'page',
   data() {
     return {
       contents: [
@@ -86,7 +91,7 @@ export default {
     flex-direction: row;
     padding: 1rem 0;
     margin-bottom: 1rem;
-    border-bottom: 1px solid #F0F0F0;
+    border-bottom: 1px solid var(--c-theme-mid);
 
     i.topic-icon {
       font-size: 4rem;
@@ -106,7 +111,7 @@ export default {
       }
 
       span {
-        color: #969696;
+        color: var(--c-text-secondary);
       }
     }
   }
@@ -119,10 +124,12 @@ export default {
       align-items: flex-start;
       justify-content: flex-start;
       padding: 1.25rem .5rem;
-      border-bottom: 1px solid #F0F0F0;
+      border-bottom: 1px solid var(--c-theme-mid);
+      
+      &:last-child { border: none; }
 
       &:hover {
-        background-color: #F9F9F9;
+        background-color: var(--c-border-dark);
       }
 
       i {
@@ -132,7 +139,7 @@ export default {
         text-align: center;
 
         &.fa-youtube { color: red; }
-        &.fa-chrome { color: #02030F; }
+        &.fa-chrome { color: var(--c-ontheme); }
         &.fa-file-pdf { color: #2169a9; }
       }
 
@@ -143,15 +150,20 @@ export default {
 
         h3 {
           font-weight: 400;
-          margin-bottom: .5rem;
+          margin-bottom: .25rem;
 
-          a { color: #02030F; }
+          a { color: var(--c-ontheme); }
         }
 
         span.author {
           font-size: .875rem;
+          color: var(--c-text-secondary);
           
-          a { color: #969696; }
+          &:nth-child(2) {
+            margin:0 .5rem;
+          }
+
+          a { color: var(--c-text-secondary); }
         }
 
         h3, span {

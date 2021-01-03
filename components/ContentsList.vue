@@ -1,5 +1,5 @@
 <template>
-  <div class="x-container">
+  <div class="x-container" id="x-container">
     <div class="topic" v-for="(topic, index) in topics" :key="'topic-' + index">
       <router-link :to="'/konu/' + topic.name">
         <!--<img :src="require('../static/topics/android.png')" :alt="topic.title">-->
@@ -100,6 +100,10 @@ export default {
     width: 100%;
     clear: both;
 
+    &:last-child { 
+      a { border: none; }
+    }
+
     a {
       width: 100%;
       display: flex;
@@ -107,7 +111,7 @@ export default {
       align-items: center;
       padding: 1rem .5rem;
       text-decoration: none;
-      border-bottom: 1px solid #F0F0F0;
+      border-bottom: 1px solid var(--c-theme-mid);
       transition: all .075s;
 
       img {
@@ -128,12 +132,12 @@ export default {
       }
 
       h2 {
-        color: #02030F;
+        color: var(--c-ontheme);
         font-weight: 400;
       }
 
       &:hover {
-        background-color: #F7F7F7;
+        background-color: var(--c-border-dark);
         padding-left: .5rem;
       }
     }
