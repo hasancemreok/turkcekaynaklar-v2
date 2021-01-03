@@ -137,7 +137,7 @@ export default {
       }
 
       &:hover {
-        background-color: var(--c-border-dark);
+        background-color: var(--c-theme-mid);
         padding-left: .5rem;
       }
     }
