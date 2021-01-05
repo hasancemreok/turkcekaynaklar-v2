@@ -3,12 +3,13 @@
     <div class="topic-header">
       <img class="profile-pic">
       <div class="topic-info">
-        <h1>Adem İlter</h1>
+        <h1>{{author.name}}</h1>
+        <p v-if="author.description">{{author.description}}</p>
         <div class="links">
-          <span class="profile-link website"><a target="_blank" href="https://twitter.com/ademilter">ademilter</a></span>
-          <span class="profile-link twitter"><a target="_blank" href="https://twitter.com/ademilter">ademilter</a></span>
-          <span class="profile-link youtube"><a target="_blank" href="https://twitter.com/ademilter">ademilter</a></span>
-          <span class="profile-link instagram"><a target="_blank" href="https://www.instagram.com/ademilter/">ademilter</a></span>
+          <span class="profile-link website"><a target="_blank" :href="author.website">{{author.uniqueName}}</a></span>
+          <span class="profile-link twitter"><a target="_blank" :href="'https://twitter.com/' + author.twitter">{{author.twitter}}</a></span>
+          <span class="profile-link youtube"><a target="_blank" :href="'https://youtube.com/' + author.youtube">{{author.youtube}}</a></span>
+          <span class="profile-link github"><a target="_blank" :href="'https://github.com/' + author.github">{{author.github}}</a></span>
         </div>
       </div>
     </div>
@@ -18,7 +19,7 @@
         <div class="content-info">
           <h3><a target="_blank" :href="content.link">{{content.title}}</a></h3>
           <div class="sub-links">
-            <span class="author"><i :class="'devicon-' + content.topic + '-plain colored'"></i><a :href="'/konu/' + content.topic">{{content.topicTitle}}</a></span>
+            <span class="author"><i :class="'devicon-' + content.topic + '-plain colored'"></i><a :href="'/konu/' + content.topicId">{{content.topicName}}</a></span>
           </div>
         </div>
       </div>
@@ -27,14 +28,13 @@
 </template>
 
 <script>
-
 export default {
   name: 'Yazar',
   components: { },
   layout: 'page',
   data() {
     return {
-      contents: [
+      contents_local: [
         { topicTitle: "Android", topic:"android", type: "www", author: "Mobilhanem", title: "Mobilhanem", link: "https://www.mobilhanem.com" },
         { topicTitle: "Android", topic:"android", type: "www", author: "Yusuf Çakal", title: 'Android Günlüğü', link: "http://yusufcakal.com" },
         { topicTitle: "Android", topic:"android", type: "medium", author: "Yusuf Çakal", title: 'Android Uygulamaya "Facebook ile Giriş" Ekleme', link: "https://medium.com/@yusufcakal/android-uygulamaya-facebook-ile-giri%C5%9F-ekleme-14940166eb22" },
@@ -43,8 +43,18 @@ export default {
         { topicTitle: "React", topic:"react", type: "youtube", author: "Levent Yadırga", title: 'Android Studio ile Uygulama Geliştirme Eğitimi', link: "https://www.youtube.com/playlist?list=PL9qDMO9EzLX25NTHm0q7svKLx__OZY8-e" },
         { topicTitle: "JavaScript", topic:"javascript", type: "medium", author: "Halil Özel", title: 'Android KTX Nedir ?', link: "https://medium.com/@halilozel1903/android-ktx-nedir-84ecbc615bfb" },
         { topicTitle: "CSS", topic:"css3", type: "medium", author: "Halil Özel", title: 'App Inventor Nedir ?', link: "https://medium.com/@halilozel1903/app-inventor-nedir-c37215ae598a" },
-      ]
+      ],
+      contents: null,
+      author: {},
     }
+  },
+  async fetch() {
+    this.author = await fetch('https://turkcekaynaklar-backend-d6rdc62m6q-ey.a.run.app/api/authors/' + this.$route.params.id)
+    .then(response => response.json())
+    .then(response => response[0])
+
+    this.contents = await fetch('https://turkcekaynaklar-backend-d6rdc62m6q-ey.a.run.app/api/authors/' + this.$route.params.id +'/resources')
+    .then(response => response.json())
   },
   methods: {
     getContentClass(type) {
@@ -52,7 +62,11 @@ export default {
       else if(type === "youtube") return "fab fa-youtube";
       else if(type === "medium") return "fab fa-medium";
       else if(type === "pdf") return "fas fa-file-pdf"
-    }
+    },
+    getClassFromLink(profile) {
+      
+    },
+    getProfileName(profile) { }
   }
 }
 
@@ -61,6 +75,7 @@ export default {
 <style lang="scss" scoped>
 
   .x-container {
+    padding-top: 1rem;
     display: flex;
     flex-direction: column;
 
@@ -102,11 +117,14 @@ export default {
     .topic-info {
       display: flex;
       flex-direction: column;
-      justify-content: space-around;
+      justify-content: space-between;
 
       h1 {
-        font-weight: 400;
+        font-weight: 400; margin-bottom: .625rem;
+        line-height: 100%;
       }
+
+      p { font-size: 1rem; margin-bottom: .75rem; }
 
       span.profile-link {
         color: var(--c-text-secondary);
@@ -131,6 +149,10 @@ export default {
 
         &.linkedin::before {
           font-family: "Font Awesome 5 Brands"; content: "\f08c";
+        }
+
+        &.github::before {
+          font-family: "Font Awesome 5 Brands"; content: "\f09b";
         }
 
         &.website::before {

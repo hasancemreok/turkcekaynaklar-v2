@@ -48,7 +48,9 @@ export default {
   ],
 
   // Axios module configuration (https://go.nuxtjs.dev/config-axios)
-  axios: {},
+  axios: {
+    baseURL: 'https://turkcekaynaklar-backend-d6rdc62m6q-ey.a.run.app'
+  },
 
   // Content module configuration (https://go.nuxtjs.dev/config-content)
   content: {},
@@ -59,6 +61,6 @@ export default {
 
   server: {
     port: 3000,
-    host: '192.168.1.103'
-  }
+    host: '127.0.0.1'
+  },
 }

@@ -8,10 +8,10 @@
     </div>
     -->
     <div class="topic-header">
-      <i class="topic-icon devicon-android-plain colored"></i>
+      <i class="topic-icon" :class="topic.class"></i>
       <div class="topic-info">
-        <h1>Android</h1>
-        <span>Android konu başlığına ait içerikler görüntüleniyor</span>
+        <h1>{{topic.title}}</h1>
+        <span>{{topic.title}} konu başlığına ait içerikler görüntüleniyor</span>
       </div>
     </div>
     <div class="topic-content">
@@ -20,7 +20,7 @@
         <div class="content-info">
           <h3><a target="_blank" :href="content.link">{{content.title}}</a></h3>
           <div class="sub-links">
-            <span class="author"><a :href="'/yazar/' + content.author">{{content.author}}</a></span>
+            <span class="author"><router-link :to="'/yazar/' + content.authorId">{{content.authorName}}</router-link></span>
             <!--<span class="author">&bull;</span>
             <span class="author"><a :href="content.link" target="_blank">{{content.link}}</a></span>-->
           </div>
@@ -37,7 +37,7 @@ export default {
   layout: 'page',
   data() {
     return {
-      contents: [
+      contents_Local: [
         { type: "www", author: "Mobilhanem", title: "Mobilhanem", link: "https://www.mobilhanem.com" },
         { type: "www", author: "Yusuf Çakal", title: 'Android Günlüğü', link: "http://yusufcakal.com" },
         { type: "medium", author: "Yusuf Çakal", title: 'Android Uygulamaya "Facebook ile Giriş" Ekleme', link: "https://medium.com/@yusufcakal/android-uygulamaya-facebook-ile-giri%C5%9F-ekleme-14940166eb22" },
@@ -46,8 +46,18 @@ export default {
         { type: "youtube", author: "Levent Yadırga", title: 'Android Studio ile Uygulama Geliştirme Eğitimi', link: "https://www.youtube.com/playlist?list=PL9qDMO9EzLX25NTHm0q7svKLx__OZY8-e" },
         { type: "medium", author: "Halil Özel", title: 'Android KTX Nedir ?', link: "https://medium.com/@halilozel1903/android-ktx-nedir-84ecbc615bfb" },
         { type: "medium", author: "Halil Özel", title: 'App Inventor Nedir ?', link: "https://medium.com/@halilozel1903/app-inventor-nedir-c37215ae598a" },
-      ]
+      ],
+      contents: null,
+      topic: {},
     }
+  },
+  async fetch() {
+    this.topic = await fetch('https://turkcekaynaklar-backend-d6rdc62m6q-ey.a.run.app/api/topics/' + this.$route.params.id)
+    .then(response => response.json())
+    .then(response => response[0])
+
+    this.contents = await fetch('https://turkcekaynaklar-backend-d6rdc62m6q-ey.a.run.app/api/topics/' + this.$route.params.id + '/resources')
+    .then(response => response.json())
   },
   methods: {
     getContentClass(type) {
@@ -63,6 +73,7 @@ export default {
 <style lang="scss" scoped>
 
   .x-container {
+    padding-top: 1rem;
     display: flex;
     flex-direction: column;
 
@@ -129,7 +140,7 @@ export default {
       &:last-child { border: none; }
 
       &:hover {
-        background-color: var(--c-border-dark);
+        background-color: var(--c-theme-mid);
       }
 
       i {

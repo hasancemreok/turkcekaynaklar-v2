@@ -11,12 +11,14 @@
 </template>
 
 <script>
+import axios from '@nuxtjs/axios'
+
 export default {
   name: 'ContentsList',
   props: { },
   data() {
     return {
-      topics: [
+      topics_Local: [
         { class:"devicon-android-plain colored", name: "android", title: "Android" },
         { class:"devicon-angularjs-plain colored", name: "angular", title: "Angular" },
         { class:"devicon-dot-net-plain colored", name: "aspnet", title: "ASP.NET" },
@@ -82,8 +84,13 @@ export default {
         { class:"fab fa-youtube", name: "youtube-kanallari", title: "Youtube Kanalları" },
         { class:"fas fa-podcast", name: "podcast-yayinlari", title: "Podcast Yayınları" },
         { class:"devicon-slack-plain colored", name: "slack-gruplari", title: "Slack Grupları" },
-      ]
+      ],
+      topics: null
     }
+  },
+  async fetch() {
+    this.topics = await fetch('https://turkcekaynaklar-backend-d6rdc62m6q-ey.a.run.app/api/topics')
+    .then(response => response.json())
   }
 }
 
