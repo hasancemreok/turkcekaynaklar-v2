@@ -1,10 +1,10 @@
 <template>
   <div class="x-container">
     <!--<div class="sub-nav">
-      <router-link to="/">
+      <NuxtLink to="/">
         <i class="fas fa-arrow-left"></i>
         <span>Geri Dön</span>
-      </router-link>
+      </NuxtLink>
     </div>
     -->
     <div class="topic-header">
@@ -20,7 +20,7 @@
         <div class="content-info">
           <h3><a target="_blank" :href="content.link">{{content.title}}</a></h3>
           <div class="sub-links">
-            <span class="author"><router-link :to="'/yazar/' + content.authorId">{{content.authorName}}</router-link></span>
+            <span class="author"><NuxtLink :to="'/yazar/' + content.authorId">{{content.authorName}}</NuxtLink></span>
             <!--<span class="author">&bull;</span>
             <span class="author"><a :href="content.link" target="_blank">{{content.link}}</a></span>-->
           </div>
@@ -35,6 +35,22 @@ export default {
   name: 'Konu',
   components: { },
   layout: 'page',
+  head() {
+    return {
+      title: `${this.topic.title} - Türkçe Kaynaklar Listesi`,
+      meta: [
+        {
+          hid: 'description',
+          name: 'description',
+          content: `${this.topic.title} için Türkçe yazılım ve tasarım dersleri`
+        },
+        {
+          name: 'keywords',
+          content: `${this.topic.title} türkçe kaynaklar yazılım tasarım`
+        }
+      ]
+    }
+  },
   data() {
     return {
       contents_Local: [

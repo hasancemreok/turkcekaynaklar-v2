@@ -1,9 +1,9 @@
 <template>
   <div class="f-container" :class="{'scrolled' : mode}" id="jumbotron">
     <div class="x-container jumbotron">
-      <router-link to="/" class="logo-link">
+      <NuxtLink to="/" class="logo-link">
         <img class="logo" src="~/static/logo.png" alt="turkcekaynaklar.com">
-      </router-link>
+      </NuxtLink>
       <input type="text" class="input-text" placeholder="Türkçe kaynak arayın..." autocomplete="none" />
       <div class="buttons">
         <a target="_blank " href="https://github.com/fatihacet/turkcekaynaklar-com/blob/master/Katki-Cagrisi.md" class="btn btn-primary" alt="Sen de katkıda bulun!">

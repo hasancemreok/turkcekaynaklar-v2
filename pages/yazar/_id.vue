@@ -31,19 +31,25 @@
 export default {
   name: 'Yazar',
   components: { },
+  head() {
+    return {
+      title: `${this.author.name} - Türkçe Kaynaklar Listesi`,
+      meta: [
+        {
+          hid: 'description',
+          name: 'description',
+          content: `${this.author.name} tarafından Türkçe kaynaklar, yazılım ve tasarım alanında içerikler`
+        },
+        {
+          name: 'keywords',
+          content: `${this.author.name} türkçe kaynaklar yazılım tasarım`
+        }
+      ]
+    }
+  },
   layout: 'page',
   data() {
     return {
-      contents_local: [
-        { topicTitle: "Android", topic:"android", type: "www", author: "Mobilhanem", title: "Mobilhanem", link: "https://www.mobilhanem.com" },
-        { topicTitle: "Android", topic:"android", type: "www", author: "Yusuf Çakal", title: 'Android Günlüğü', link: "http://yusufcakal.com" },
-        { topicTitle: "Android", topic:"android", type: "medium", author: "Yusuf Çakal", title: 'Android Uygulamaya "Facebook ile Giriş" Ekleme', link: "https://medium.com/@yusufcakal/android-uygulamaya-facebook-ile-giri%C5%9F-ekleme-14940166eb22" },
-        { topicTitle: "Angular", topic:"angularjs", type: "www", author: "Ümit Köse", title: 'umiitkose.com Android Blog', link: "http://www.umiitkose.com/android" },
-        { topicTitle: "VueJS", topic:"vuejs", type: "pdf", author: "Ümit Köse", title: 'Android Türkçe PDF', link: "http://umiitkose.com/wp-content/uploads/2015/08/AndroidStudio.pdf" },
-        { topicTitle: "React", topic:"react", type: "youtube", author: "Levent Yadırga", title: 'Android Studio ile Uygulama Geliştirme Eğitimi', link: "https://www.youtube.com/playlist?list=PL9qDMO9EzLX25NTHm0q7svKLx__OZY8-e" },
-        { topicTitle: "JavaScript", topic:"javascript", type: "medium", author: "Halil Özel", title: 'Android KTX Nedir ?', link: "https://medium.com/@halilozel1903/android-ktx-nedir-84ecbc615bfb" },
-        { topicTitle: "CSS", topic:"css3", type: "medium", author: "Halil Özel", title: 'App Inventor Nedir ?', link: "https://medium.com/@halilozel1903/app-inventor-nedir-c37215ae598a" },
-      ],
       contents: null,
       author: {},
     }

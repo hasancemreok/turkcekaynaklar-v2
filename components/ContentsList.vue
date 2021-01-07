@@ -1,11 +1,10 @@
 <template>
   <div class="x-container" id="x-container">
     <div class="topic" v-for="(topic, index) in topics" :key="'topic-' + index">
-      <router-link :to="'/konu/' + topic.name">
-        <!--<img :src="require('../static/topics/android.png')" :alt="topic.title">-->
+      <NuxtLink :to="'/konu/' + topic.name">
         <i :class="topic.class"></i>
         <h2>{{topic.title}}</h2>
-      </router-link>
+      </NuxtLink>
     </div>
   </div>
 </template>
